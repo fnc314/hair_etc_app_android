@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
@@ -18,10 +19,12 @@ public class MainActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		if (savedInstanceState == null) {
-			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new PlaceholderFragment()).commit();
-		}
+		String url = "http://hairetcapp.herokuapp.com/";
+		WebView view = (WebView) findViewById(R.id.webView1);
+		
+		view.getSettings().setJavaScriptEnabled(true);
+		view.loadUrl(url);
+		
 	}
 
 	@Override
