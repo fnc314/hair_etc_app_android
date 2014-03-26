@@ -16,6 +16,8 @@ import android.webkit.WebViewClient;
 import android.os.Build;
 
 public class MainActivity extends Activity {
+	
+	private WebView view;
 
 	@SuppressLint("SetJavaScriptEnabled")
 	@Override
@@ -25,13 +27,22 @@ public class MainActivity extends Activity {
 
 		// Heroku App
 		String url = "http://hairetcapp.herokuapp.com/";
-		WebView view = (WebView) this.findViewById(R.id.webView1);
+		view = (WebView) this.findViewById(R.id.webView1);
 		
 		view.setWebViewClient(new WebViewClient());
 		view.getSettings().setJavaScriptEnabled(true);
 		view.loadUrl(url);
 		
 	}
+	
+		@Override
+		public void onBackPressed() {
+			if (view.canGoBack()) {
+				view.goBack();
+			} else {
+				super.onBackPressed();
+			}
+		}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
