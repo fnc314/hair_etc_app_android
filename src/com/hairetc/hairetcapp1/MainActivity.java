@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		// Heroku App
-		String url = "http://hairetcapp.herokuapp.com/";
+		String url = "http://10.0.2.2:3000";
 		view = (WebView) this.findViewById(R.id.webView1);
 		
 		view.setWebViewClient(new WebViewClient());
@@ -35,14 +35,14 @@ public class MainActivity extends Activity {
 		
 	}
 	
-		@Override
-		public void onBackPressed() {
-			if (view.canGoBack()) {
-				view.goBack();
-			} else {
-				super.onBackPressed();
-			}
+	@Override
+	public void onBackPressed() {
+		if (view.canGoBack()) {
+			view.goBack();
+		} else {
+			super.onBackPressed();
 		}
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
