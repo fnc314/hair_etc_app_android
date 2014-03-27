@@ -26,9 +26,9 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		// Heroku App
-		String url = "http://10.0.2.2:3000";
+		String url = "http://10.0.2.2:3000/";
 		view = (WebView) this.findViewById(R.id.webView1);
-		
+		WebView.setWebContentsDebuggingEnabled(true);
 		view.setWebViewClient(new WebViewClient());
 		view.getSettings().setJavaScriptEnabled(true);
 		view.loadUrl(url);
