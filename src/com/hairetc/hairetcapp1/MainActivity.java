@@ -26,9 +26,15 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		// Heroku App
-		String url = "http://10.0.2.2:3000/";
+		String url = "http://hairetcapp.herokuapp.com/";
 		view = (WebView) this.findViewById(R.id.webView1);
-		WebView.setWebContentsDebuggingEnabled(true);
+		
+		// Debugging enabled for build purposes only
+		// and should be false
+		// Requires use of emulator/device running Android 4.4 or greater		
+		// WebView.setWebContentsDebuggingEnabled(false);
+		
+		
 		view.setWebViewClient(new WebViewClient());
 		view.getSettings().setJavaScriptEnabled(true);
 		view.loadUrl(url);
