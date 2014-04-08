@@ -8,11 +8,5 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never"/>
-    
-    <item
-        android:id="@+id/testbutton"
-        android:icon="@drawable/ic_launcher"
-        android:title="@string/app_name"
-        app:showAsAction="ifRoom" />
 
 </menu>

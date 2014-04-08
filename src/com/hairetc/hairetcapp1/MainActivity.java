@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -41,13 +42,10 @@ public class MainActivity extends Activity {
 		
 	}
 	
-//	public void testButton() {
-//		String url = "http://hairetcapp.herokuapp.com/signup";
-//		view = (WebView) this.findViewById(R.id.webView1);
-//		view.setWebViewClient(new WebViewClient());
-//		view.getSettings().setJavaScriptEnabled(true);
-//		view.loadUrl(url);
-//	}
+	public void testButton(View v) {
+//		Intent i;
+		setContentView(R.layout.new_form);
+	}
 	
 	@Override
 	public void onBackPressed() {
