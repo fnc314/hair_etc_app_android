@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		// Heroku App
-		String url = "http://hairetcapp.herokuapp.com/";
+		String url = "http://www.google.com/";
 		view = (WebView) this.findViewById(R.id.webView1);
 		
 		// Debugging enabled for build purposes only
@@ -40,6 +40,14 @@ public class MainActivity extends Activity {
 		view.loadUrl(url);
 		
 	}
+	
+//	public void testButton() {
+//		String url = "http://hairetcapp.herokuapp.com/signup";
+//		view = (WebView) this.findViewById(R.id.webView1);
+//		view.setWebViewClient(new WebViewClient());
+//		view.getSettings().setJavaScriptEnabled(true);
+//		view.loadUrl(url);
+//	}
 	
 	@Override
 	public void onBackPressed() {
