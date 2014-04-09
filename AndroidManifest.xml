@@ -19,8 +19,9 @@
             android:name="com.hairetc.hairetcapp1.Splash"
             android:label="@string/app_name" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.intent.action.SPLASH" />
+				<action android:name="android.intent.action.MAIN" />
+                
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -34,15 +35,17 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        
         <activity
-            android:name="com.hairetc.hairetcapp1.NewForm"
+            android:name="com.hairetc.hairetcapp1.Form"
             android:label="@string/app_name" >
             <intent-filter>
-                <action android:name="com.hairetc.hairetcapp1.NEWFORM" />
+                <action android:name="com.hairetc.hairetcapp1.FORM" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        
     </application>
 
 </manifest>

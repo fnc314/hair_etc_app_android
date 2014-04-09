@@ -6,19 +6,12 @@
     tools:context="com.hairetc.hairetcapp1.MainActivity"
     tools:ignore="MergeRootFrame" >
 
-    <WebView
-        android:id="@+id/webView1"
-        android:layout_width="match_parent"
-        android:layout_height="449dp"
-        android:layout_gravity="bottom" />
-
     <Button
         android:id="@+id/button1"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/button"
-        android:onClick="testButton" />
+        android:layout_gravity="center"
+        android:text="@string/button" />
 
 </FrameLayout>
