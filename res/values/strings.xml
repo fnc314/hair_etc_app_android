@@ -2,15 +2,30 @@
 <resources>
 
     <string name="app_name">HairEtcApp</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="button">Button</string>
-    <string name="test">Test</string>
-    <string name="checkbox">CheckBox</string>
-    <string name="datepickbutton">Pick Date</string>
-    <string name="timepickbutton">Pick Time</string>
     <string name="submitbutton">Submit</string>
     <string name="datePicked">DATE</string>
     <string name="timePicked">TIME</string>
+    <string name="haircut">Hair Cut</string>
+    <string name="color">Color</string>
+    <string name="partialColor">Partial Color</string>
+    <string name="highlites">Hilites</string>
+    <string name="partialHighlites">Partial Hilites</string>
+    <string name="perm">Perm</string>
+    <string name="updo">Updo</string>
+    <string name="blowout">Blowout</string>
+    <string name="hairExtensions">Extensions</string>
+    <string name="wax">Wax</string>
+    <string name="spPromptStylist">Choose Your Stylist...</string>
+    
+    <string-array name="stylists">
+        <item>Theresa</item>
+        <item>Chrissy</item>
+        <item>Stacy</item>
+        <item>Sheri</item>
+        <item>Krista</item>
+        <item>Junae</item>
+    </string-array>
 
 </resources>

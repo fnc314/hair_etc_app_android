@@ -2,61 +2,146 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:padding="10dp" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="match_parent"
+    <Spinner
+        android:id="@+id/spStylistSelect"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Stylists (Radio Buttons)"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:prompt="@string/spPromptStylist" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Services (Checkboxes)"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-   <LinearLayout
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" >
 
-        <EditText
-            android:id="@+id/apptDate"
-            android:layout_width="match_parent"
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:hint="@string/datePicked"
-            android:inputType="date"
-            android:onClick="datePick" />
+            android:weightSum="100" >
 
-    </LinearLayout>
+            <CheckBox
+                android:id="@+id/cbHairCut"
+                android:layout_column="0"
+                android:layout_weight="65"
+                android:text="@string/haircut" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/cbExtensions"
+                android:layout_column="1"
+                android:layout_weight="35"
+                android:text="@string/hairExtensions" />
+        </TableRow>
 
-        <EditText
-            android:id="@+id/apptTime"
-            android:layout_width="match_parent"
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/timePicked"
-            android:inputType="time"
-            android:onClick="timePick" />
+            android:layout_weight="100" >
 
-    </LinearLayout>
+            <CheckBox
+                android:id="@+id/cbColor"
+                android:layout_column="0"
+                android:layout_weight="65"
+                android:text="@string/color" />
+
+            <CheckBox
+                android:id="@+id/cbPartialColor"
+                android:layout_weight="35"
+                android:text="@string/partialColor" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:weightSum="100" >
+
+            <CheckBox
+                android:id="@+id/cbHilites"
+                android:layout_column="0"
+                android:layout_weight="65"
+                android:text="@string/highlites" />
+
+            <CheckBox
+                android:id="@+id/cbPartialHilites"
+                android:layout_column="1"
+                android:layout_weight="35"
+                android:text="@string/partialHighlites" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="100" >
+
+            <CheckBox
+                android:id="@+id/cbPerm"
+                android:layout_column="0"
+                android:layout_weight="65"
+                android:text="@string/perm" />
+
+            <CheckBox
+                android:id="@+id/cbUpdo"
+                android:layout_column="1"
+                android:layout_weight="35"
+                android:text="@string/updo" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:weightSum="100" >
+            
+            <CheckBox
+	            android:id="@+id/cbBrazilianBlowout"
+	            android:layout_column="0"
+	            android:layout_weight="65"
+	            android:text="@string/blowout" />
+
+	        <CheckBox
+	            android:id="@+id/cbWax"
+	            android:layout_column="1"
+	            android:layout_weight="35"
+	            android:text="@string/wax" />
+        </TableRow>
+    </TableLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
+        <EditText
+            android:id="@+id/apptDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/datePicked"
+            android:inputType="date"
+            android:onClick="datePick"
+            android:textAlignment="center" >
+        </EditText>
+
+        <EditText
+            android:id="@+id/apptTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/timePicked"
+            android:inputType="time"
+            android:onClick="timePick" />
+
         <Button
             android:id="@+id/apptSubmit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/submitbutton" />
+            android:text="@string/submitbutton"
+            android:onClick="scheduleAppt" />
+
     </LinearLayout>
 
 </LinearLayout>
