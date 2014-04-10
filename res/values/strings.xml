@@ -7,17 +7,23 @@
     <string name="submitbutton">Submit</string>
     <string name="datePicked">DATE</string>
     <string name="timePicked">TIME</string>
+    <string name="theresa">Theresa</string>
+    <string name="sheri">Sheri</string>
+    <string name="chrissy">Chrissy</string>
+    <string name="stacy">Stacy</string>
+    <string name="krista">Krista</string>
+    <string name="junae">Junae</string>
     <string name="haircut">Hair Cut</string>
     <string name="color">Color</string>
     <string name="partialColor">Partial Color</string>
-    <string name="highlites">Hilites</string>
-    <string name="partialHighlites">Partial Hilites</string>
+    <string name="hilites">Hilites</string>
+    <string name="partialHilites">Partial Hilites</string>
     <string name="perm">Perm</string>
     <string name="updo">Updo</string>
-    <string name="blowout">Blowout</string>
+    <string name="brazilianBlowout">Brazilian Blowout</string>
     <string name="hairExtensions">Extensions</string>
     <string name="wax">Wax</string>
-    <string name="spPromptStylist">Choose Your Stylist...</string>
+    <string name="spPromptStylist">Choose Your Stylist</string>
     
     <string-array name="stylists">
         <item>Theresa</item>

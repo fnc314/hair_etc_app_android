@@ -13,24 +13,35 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp" >
 
         <TableRow
             android:id="@+id/tableRow1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
             android:weightSum="100" >
 
             <CheckBox
                 android:id="@+id/cbHairCut"
                 android:layout_column="0"
                 android:layout_weight="65"
+                android:onClick="selectedServices"
+                android:paddingBottom="0dp"
+                android:paddingTop="0dp"
                 android:text="@string/haircut" />
 
             <CheckBox
                 android:id="@+id/cbExtensions"
                 android:layout_column="1"
                 android:layout_weight="35"
+                android:onClick="selectedServices"
+                android:paddingBottom="0dp"
+                android:paddingTop="0dp"
                 android:text="@string/hairExtensions" />
         </TableRow>
 
@@ -38,17 +49,26 @@
             android:id="@+id/tableRow2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="100" >
+            android:layout_gravity="center"
+            android:layout_weight="100"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp" >
 
             <CheckBox
                 android:id="@+id/cbColor"
                 android:layout_column="0"
                 android:layout_weight="65"
+                android:onClick="selectedServices"
+                android:paddingBottom="0dp"
+                android:paddingTop="0dp"
                 android:text="@string/color" />
 
             <CheckBox
                 android:id="@+id/cbPartialColor"
                 android:layout_weight="35"
+                android:onClick="selectedServices"
+                android:paddingBottom="0dp"
+                android:paddingTop="0dp"
                 android:text="@string/partialColor" />
         </TableRow>
 
@@ -56,37 +76,55 @@
             android:id="@+id/tableRow3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
             android:weightSum="100" >
 
             <CheckBox
                 android:id="@+id/cbHilites"
                 android:layout_column="0"
                 android:layout_weight="65"
-                android:text="@string/highlites" />
+                android:onClick="selectedServices"
+                android:paddingBottom="0dp"
+                android:paddingTop="0dp"
+                android:text="@string/hilites" />
 
             <CheckBox
                 android:id="@+id/cbPartialHilites"
                 android:layout_column="1"
                 android:layout_weight="35"
-                android:text="@string/partialHighlites" />
+                android:onClick="selectedServices"
+                android:paddingBottom="0dp"
+                android:paddingTop="0dp"
+                android:text="@string/partialHilites" />
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="100" >
+            android:layout_gravity="center"
+            android:layout_weight="100"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp" >
 
             <CheckBox
                 android:id="@+id/cbPerm"
                 android:layout_column="0"
                 android:layout_weight="65"
+                android:onClick="selectedServices"
+                android:paddingBottom="0dp"
+                android:paddingTop="0dp"
                 android:text="@string/perm" />
 
             <CheckBox
                 android:id="@+id/cbUpdo"
                 android:layout_column="1"
                 android:layout_weight="35"
+                android:onClick="selectedServices"
+                android:paddingBottom="0dp"
+                android:paddingTop="0dp"
                 android:text="@string/updo" />
         </TableRow>
 
@@ -94,19 +132,28 @@
             android:id="@+id/tableRow5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
             android:weightSum="100" >
-            
-            <CheckBox
-	            android:id="@+id/cbBrazilianBlowout"
-	            android:layout_column="0"
-	            android:layout_weight="65"
-	            android:text="@string/blowout" />
 
-	        <CheckBox
-	            android:id="@+id/cbWax"
-	            android:layout_column="1"
-	            android:layout_weight="35"
-	            android:text="@string/wax" />
+            <CheckBox
+                android:id="@+id/cbBrazilianBlowout"
+                android:layout_column="0"
+                android:layout_weight="65"
+                android:onClick="selectedServices"
+                android:paddingBottom="0dp"
+                android:paddingTop="0dp"
+                android:text="@string/brazilianBlowout" />
+
+            <CheckBox
+                android:id="@+id/cbWax"
+                android:layout_column="1"
+                android:layout_weight="35"
+                android:onClick="selectedServices"
+                android:paddingBottom="0dp"
+                android:paddingTop="0dp"
+                android:text="@string/wax" />
         </TableRow>
     </TableLayout>
 
@@ -119,11 +166,14 @@
             android:id="@+id/apptDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:ems="10"
             android:hint="@string/datePicked"
             android:inputType="date"
             android:onClick="datePick"
             android:textAlignment="center" >
+
+            <requestFocus />
         </EditText>
 
         <EditText
