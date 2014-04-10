@@ -7,5 +7,10 @@
     <string name="button">Button</string>
     <string name="test">Test</string>
     <string name="checkbox">CheckBox</string>
+    <string name="datepickbutton">Pick Date</string>
+    <string name="timepickbutton">Pick Time</string>
+    <string name="submitbutton">Submit</string>
+    <string name="datePicked">DATE</string>
+    <string name="timePicked">TIME</string>
 
 </resources>

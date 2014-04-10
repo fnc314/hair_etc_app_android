@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		button = (Button) findViewById(R.id.button1);
+		button = (Button) findViewById(R.id.datePick);
 		button.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

@@ -4,34 +4,59 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TimePicker
-        android:id="@+id/timePicker1"
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Stylists (Radio Buttons)"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Services (Checkboxes)"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/apptDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:hint="@string/datePicked"
+            android:inputType="date"
+            android:onClick="datePick" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/apptTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/timePicked"
+            android:inputType="time"
+            android:onClick="timePick" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="vertical" >
 
-        <CheckBox
-            android:id="@+id/checkBox1"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/apptSubmit"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/checkbox" />
-
-        <CheckBox
-            android:id="@+id/checkBox2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fadingEdge="horizontal"
-            android:text="@string/checkbox" />
-
+            android:text="@string/submitbutton" />
     </LinearLayout>
-
-    <CalendarView
-        android:id="@+id/calendarView1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
 </LinearLayout>
