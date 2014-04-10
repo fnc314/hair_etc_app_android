@@ -118,24 +118,7 @@ public class Form extends Activity implements OnItemSelectedListener {
 		spStylistSelect.setAdapter(adapter);
 		spStylistSelect.setOnItemSelectedListener(this);
 	}
-	
-	// Make temporary Toast to show customers what they chose
-	
-	public void tempToast() {
-		toastString = chosenServices 
-				+ "with " 
-				+ chosenStylist 
-				+ " on " 
-				+ chosenDate 
-				+ " at " 
-				+ chosenTime;
-		Toast toast = Toast.makeText(this, toastString, Toast.LENGTH_LONG);
-		toast.show();
-	}
-	
-	public void scheduleAppt(View v) {
-		tempToast();
-	}
+
 	
 	// Implemented function from Spinner spStylistSelect.setOnItemSelectedListener
 	@Override
@@ -169,7 +152,7 @@ public class Form extends Activity implements OnItemSelectedListener {
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
 		// TODO Auto-generated method stub
-		chosenStylist = "Theresa";
+		chosenStylist = getString(R.string.theresa);
 	}
 	
 	// Code implemented directly from http://developer.android.com/guide/topics/ui/controls/checkbox.html
@@ -266,6 +249,23 @@ public class Form extends Activity implements OnItemSelectedListener {
 	// Confirm with TOAST and redirect to main activity
 	
 	
+	// Make temporary Toast to show customers what they chose
+	
+	public void tempToast() {
+		toastString = chosenServices 
+				+ "with " 
+				+ chosenStylist 
+				+ " on " 
+				+ chosenDate 
+				+ " at " 
+				+ chosenTime;
+		Toast toast = Toast.makeText(this, toastString, Toast.LENGTH_LONG);
+		toast.show();
+	}
+	
+	public void scheduleAppt(View v) {
+		tempToast();
+	}
 	
 }
 
