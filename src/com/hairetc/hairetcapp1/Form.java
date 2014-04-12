@@ -2,7 +2,9 @@ package com.hairetc.hairetcapp1;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -20,6 +22,13 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.twilio.sdk.TwilioRestClient;
+import com.twilio.sdk.TwilioRestException;
+import com.twilio.sdk.TwilioRestResponse;
+import com.twilio.sdk.resource.factory.SmsFactory;
+import com.twilio.sdk.resource.instance.Account;
+import com.twilio.sdk.resource.instance.Sms;
+
 public class Form extends Activity implements OnItemSelectedListener {
 	
 	// Global variables for getting date and time information
@@ -35,6 +44,8 @@ public class Form extends Activity implements OnItemSelectedListener {
 	private String chosenDate;
 	private String chosenTime;
 	private String toastString;
+	public static String ACCOUNTSID;
+	public static String AUTHTOKEN;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +129,6 @@ public class Form extends Activity implements OnItemSelectedListener {
 		spStylistSelect.setAdapter(adapter);
 		spStylistSelect.setOnItemSelectedListener(this);
 	}
-
 	
 	// Implemented function from Spinner spStylistSelect.setOnItemSelectedListener
 	@Override
@@ -263,8 +273,49 @@ public class Form extends Activity implements OnItemSelectedListener {
 		toast.show();
 	}
 	
+	// Twilio functionality -> to move to a separate class
+	public void twilioText() {
+		ACCOUNTSID = getString(R.string.twilioSID);
+		AUTHTOKEN = getString(R.string.twilioToken);
+
+		TwilioRestClient client = new TwilioRestClient(ACCOUNTSID, AUTHTOKEN);
+		Account account = client.getAccount();
+		SmsFactory smsFactory = account.getSmsFactory();
+		
+		// Collection of stylists
+		Map<String, String> stylists = new HashMap<String, String>();
+		stylists.put(getString(R.string.myPhone), "Franco");
+		
+		String fromNumber = getString(R.string.twilioNumber);
+		
+		for (String toNumber : stylists.keySet() ) {
+			
+			Map<String, String> params = new HashMap<String, String>();
+			params.put("From", fromNumber);
+			params.put("To", toNumber);
+			params.put("Body", toastString);
+			
+			try {
+				Sms sms = smsFactory.create(params);
+				System.out.println("Success Sending SMS: " + sms.getSid());
+			} catch (TwilioRestException e) {
+				e.printStackTrace();
+			}
+			
+		}
+	}
+	
 	public void scheduleAppt(View v) {
-		tempToast();
+//		tempToast();
+		toastString = chosenServices 
+				+ "with " 
+				+ chosenStylist 
+				+ " on " 
+				+ chosenDate 
+				+ " at " 
+				+ chosenTime;
+		
+		twilioText();
 	}
 	
 }
