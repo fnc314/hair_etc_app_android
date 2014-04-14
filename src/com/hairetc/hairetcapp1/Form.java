@@ -44,8 +44,6 @@ public class Form extends Activity implements OnItemSelectedListener {
 	private String chosenDate;
 	private String chosenTime;
 	private String toastString;
-	public static String ACCOUNTSID;
-	public static String AUTHTOKEN;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -273,40 +271,10 @@ public class Form extends Activity implements OnItemSelectedListener {
 		toast.show();
 	}
 	
-	// Twilio functionality -> to move to a separate class
-	public void twilioText() {
-		ACCOUNTSID = getString(R.string.twilioSID);
-		AUTHTOKEN = getString(R.string.twilioToken);
-
-		TwilioRestClient client = new TwilioRestClient(ACCOUNTSID, AUTHTOKEN);
-		Account account = client.getAccount();
-		SmsFactory smsFactory = account.getSmsFactory();
-		
-		// Collection of stylists
-		Map<String, String> stylists = new HashMap<String, String>();
-		stylists.put(getString(R.string.myPhone), "Franco");
-		
-		String fromNumber = getString(R.string.twilioNumber);
-		
-		for (String toNumber : stylists.keySet() ) {
-			
-			Map<String, String> params = new HashMap<String, String>();
-			params.put("From", fromNumber);
-			params.put("To", toNumber);
-			params.put("Body", toastString);
-			
-			try {
-				Sms sms = smsFactory.create(params);
-				System.out.println("Success Sending SMS: " + sms.getSid());
-			} catch (TwilioRestException e) {
-				e.printStackTrace();
-			}
-			
-		}
-	}
+	// Twilio functionality -> move to a separate class
 	
 	public void scheduleAppt(View v) {
-//		tempToast();
+		tempToast();
 		toastString = chosenServices 
 				+ "with " 
 				+ chosenStylist 
@@ -315,7 +283,7 @@ public class Form extends Activity implements OnItemSelectedListener {
 				+ " at " 
 				+ chosenTime;
 		
-		twilioText();
+//		twilioText();
 	}
 	
 }
