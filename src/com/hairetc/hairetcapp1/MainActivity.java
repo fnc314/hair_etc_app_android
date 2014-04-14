@@ -1,53 +1,67 @@
 package com.hairetc.hairetcapp1;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+// import android.support.v7.app.ActionBarActivity;
+// import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
-import android.annotation.SuppressLint;
+// import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.widget.Button;
+// import android.webkit.WebView;
+// import android.webkit.WebViewClient;
 import android.os.Build;
 
 public class MainActivity extends Activity {
 	
-	private WebView view;
+	// private WebView view;
+	Button button;
 
-	@SuppressLint("SetJavaScriptEnabled")
+	// @SuppressLint("SetJavaScriptEnabled")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		button = (Button) findViewById(R.id.datePick);
+		button.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				try {
+					Class form = Class.forName("com.hairetc.hairetcapp1.Form");
+					Intent formLaunch = new Intent(MainActivity.this, form);
+					startActivity(formLaunch);
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+			}
+		});
 
 		// Heroku App
-		String url = "http://hairetcapp.herokuapp.com/";
-		view = (WebView) this.findViewById(R.id.webView1);
-		
+		// String url = "http://www.google.com/";
+		// view = (WebView) this.findViewById(R.id.webView1);
+		// view.setWebViewClient(new WebViewClient());
+		// view.getSettings().setJavaScriptEnabled(true);
 		// Debugging enabled for build purposes only
 		// and should be false
-		// Requires use of emulator/device running Android 4.4 or greater		
+		// Requires use of emulator/device running Android 4.4 or greater
 		// WebView.setWebContentsDebuggingEnabled(false);
-		
-		
-		view.setWebViewClient(new WebViewClient());
-		view.getSettings().setJavaScriptEnabled(true);
-		view.loadUrl(url);
-		
+		// view.loadUrl(url);
 	}
+	
+//	public void testButton() {
+//		
+//	}
 	
 	@Override
 	public void onBackPressed() {
-		if (view.canGoBack()) {
-			view.goBack();
-		} else {
-			super.onBackPressed();
-		}
+		super.onBackPressed();
 	}
 
 	@Override
