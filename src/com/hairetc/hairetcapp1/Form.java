@@ -15,9 +15,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -33,7 +31,6 @@ import com.twilio.sdk.TwilioRestClient;
 import com.twilio.sdk.TwilioRestException;
 import com.twilio.sdk.resource.factory.MessageFactory;
 import com.twilio.sdk.resource.instance.Message;
-import com.twilio.sdk.resource.list.MessageList;
 
 public class Form extends Activity implements OnItemSelectedListener {
 	
@@ -311,7 +308,7 @@ public class Form extends Activity implements OnItemSelectedListener {
 				TwilioAuth = getString(R.string.twilioToken);
 				TwilioSID = getString(R.string.twilioSID);
 				TwilioPhone = getString(R.string.twilioNumber);
-				TwilioURL = getString(R.string.twilioURL) + "2010-04-01/Accounts/" + TwilioSID + "/Messages";
+				TwilioURL = getString(R.string.twilioURL) + "/2010-04-01/Accounts/" + TwilioSID + "/Messages";
 				toPhone = getString(R.string.myPhone);
 				TwilioRestClient client = new TwilioRestClient(TwilioSID, TwilioAuth, TwilioURL);
 				

@@ -12,6 +12,7 @@ public class Splash extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash);
 		Thread timer = new Thread() {
+			@Override
 			public void run() {
 				try {
 					sleep(5000);

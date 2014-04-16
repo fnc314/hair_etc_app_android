@@ -1,10 +1,7 @@
 package com.hairetc.hairetcapp1;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,9 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-// import android.webkit.WebView;
-// import android.webkit.WebViewClient;
-import android.os.Build;
 
 public class MainActivity extends Activity {
 	
