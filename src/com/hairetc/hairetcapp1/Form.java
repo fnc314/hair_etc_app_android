@@ -1,16 +1,23 @@
 package com.hairetc.hairetcapp1;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
-import java.util.Map;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -24,10 +31,9 @@ import android.widget.Toast;
 
 import com.twilio.sdk.TwilioRestClient;
 import com.twilio.sdk.TwilioRestException;
-import com.twilio.sdk.TwilioRestResponse;
-import com.twilio.sdk.resource.factory.SmsFactory;
-import com.twilio.sdk.resource.instance.Account;
-import com.twilio.sdk.resource.instance.Sms;
+import com.twilio.sdk.resource.factory.MessageFactory;
+import com.twilio.sdk.resource.instance.Message;
+import com.twilio.sdk.resource.list.MessageList;
 
 public class Form extends Activity implements OnItemSelectedListener {
 	
@@ -43,7 +49,12 @@ public class Form extends Activity implements OnItemSelectedListener {
 	private String chosenServices = "";
 	private String chosenDate;
 	private String chosenTime;
-	private String toastString;
+	String toastString;
+	static String TwilioAuth;
+	static String TwilioSID;
+	static String TwilioPhone;
+	static String TwilioURL;
+	String toPhone;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +63,26 @@ public class Form extends Activity implements OnItemSelectedListener {
 		setContentView(R.layout.form);
 		findViews();
 		populateSpinnerWithStylists();
+		apptSubmit.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				switch (v.getId()) {
+				case R.id.apptSubmit:
+					//tempToast();
+					toastString = chosenServices 
+							+ "with " 
+							+ chosenStylist 
+							+ " on " 
+							+ chosenDate 
+							+ " at " 
+							+ chosenTime;
+					new TextTwilio().execute(toastString, toPhone, TwilioPhone);
+					break;
+				}
+			}
+		});
 
 	}
 	
@@ -62,6 +93,7 @@ public class Form extends Activity implements OnItemSelectedListener {
 	}
 	
 	DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+		
 	    @Override
 	    public void onDateSet( DatePicker view, int year, int monthOfYear, int dayOfMonth ) {
 	      c.set( Calendar.YEAR, year );
@@ -271,20 +303,51 @@ public class Form extends Activity implements OnItemSelectedListener {
 		toast.show();
 	}
 	
-	// Twilio functionality -> move to a separate class
-	
-	public void scheduleAppt(View v) {
-		tempToast();
-		toastString = chosenServices 
-				+ "with " 
-				+ chosenStylist 
-				+ " on " 
-				+ chosenDate 
-				+ " at " 
-				+ chosenTime;
+	private class TextTwilio extends AsyncTask<String, Void, Void> {
+
+		@Override
+		protected Void doInBackground(String... twilioInfo) {
+			try {
+				TwilioAuth = getString(R.string.twilioToken);
+				TwilioSID = getString(R.string.twilioSID);
+				TwilioPhone = getString(R.string.twilioNumber);
+				TwilioURL = getString(R.string.twilioURL) + "2010-04-01/Accounts/" + TwilioSID + "/Messages";
+				toPhone = getString(R.string.myPhone);
+				TwilioRestClient client = new TwilioRestClient(TwilioSID, TwilioAuth, TwilioURL);
+				
+				List<NameValuePair> params = new ArrayList<NameValuePair>();
+				params.add(new BasicNameValuePair("Body", twilioInfo[0]));
+				params.add(new BasicNameValuePair("To", twilioInfo[1]));
+				params.add(new BasicNameValuePair("From", twilioInfo[2]));
+				
+				MessageFactory messageFactory = client.getAccount().getMessageFactory();
+				Message message = messageFactory.create(params);
+//				System.out.println(message.getSid());
+				Toast toast = Toast.makeText(Form.this,  message.toString(), Toast.LENGTH_LONG);
+				toast.show();
+			} catch (TwilioRestException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				Toast toast = Toast.makeText(Form.this,  e.getCause().toString(), Toast.LENGTH_LONG);
+				toast.show();
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			Intent openMainActivity = new Intent("com.hairetc.hairetcapp1.MAINACTIVITY");
+			startActivity(openMainActivity);
+			super.onPostExecute(result);
+		}
 		
-//		twilioText();
 	}
+	
+//	public void scheduleAppt(View v) {
+//		tempToast();
+//		
+//		
+//	}
 	
 }
 
