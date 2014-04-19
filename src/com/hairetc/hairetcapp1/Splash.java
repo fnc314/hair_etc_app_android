@@ -19,7 +19,7 @@ public class Splash extends Activity {
 				} catch(InterruptedException e) {
 					e.printStackTrace();
 				} finally {
-					Intent openMainActivity = new Intent("com.hairetc.hairetcapp1.MAINACTIVITY");
+					Intent openMainActivity = new Intent("com.hairetc.hairetcapp1.SIGNIN");
 					startActivity(openMainActivity);
 				}
 			}

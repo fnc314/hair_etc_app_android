@@ -25,6 +25,9 @@
     <string name="hairExtensions">Extensions</string>
     <string name="wax">Wax</string>
     <string name="spPromptStylist">Choose Your Stylist</string>
+    <string name="enterEmail">Enter Your Email Address</string>
+    <string name="enterPassword">Password</string>
+    <string name="signIn">Sign In!</string>
     
     <string-array name="stylists">
         <item>Theresa</item>
