@@ -1,18 +1,23 @@
 package com.hairetc.hairetcapp1;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.HTTP;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +26,8 @@ import android.widget.Toast;
 
 public class ClientSignIn extends Activity {
 	
+	// WORK IN THIS SECTION COMES FROM http://hmkcode.com/android-send-json-data-to-server/
+	
 	private String email;
 	private String password;
 	
@@ -28,7 +35,8 @@ public class ClientSignIn extends Activity {
 	EditText clientEmail;
 	EditText clientPassword;
 	
-	final static String URL = "http://127.0.0.1:3000";
+	// IP ADDRESS IS 10.0.2.2
+	final static String URL = "http://10.0.2.2:3000/clients/sign_in.json";
 	
 	
 	@Override
@@ -47,15 +55,17 @@ public class ClientSignIn extends Activity {
 				email = clientEmail.getText().toString();
 				password = clientPassword.getText().toString();
 				if ( !validate(email, password) ) {
-					Toast toast = Toast.makeText(ClientSignIn.this, "ENTER EMAIL AND PASSWORD", Toast.LENGTH_LONG);
-					toast.show();
+					Toast.makeText(ClientSignIn.this, "ENTER EMAIL AND PASSWORD", Toast.LENGTH_LONG).show();
 				} else {
 					if (isConnected()) {
-						Toast toast = Toast.makeText(ClientSignIn.this, "Connection", Toast.LENGTH_LONG);
-						toast.show();
+//						Creating Toast Messages to verify where in the logic blocks I am
+//						Toast toast = Toast.makeText(ClientSignIn.this, "Connection", Toast.LENGTH_LONG);
+//						toast.show();
+//						USE NEW ASYNCTASK
+//						Call a function that takes in email/password and compiles a JSONOjbect
+						new HttpAsyncTask().execute(URL, email, password);
 					} else {
-						Toast toast = Toast.makeText(ClientSignIn.this, "No Connection", Toast.LENGTH_LONG);
-						toast.show();
+						Toast.makeText(ClientSignIn.this, "No Connection", Toast.LENGTH_LONG).show();
 					}
 				}
 				
@@ -86,26 +96,24 @@ public class ClientSignIn extends Activity {
 			return true;
 		}
 	}
-	
-	public static void jsonRequestCreation(String email, String password) {
-		JSONObject params = new JSONObject();
-		try {
-			params.put("email", email);
-			params.put("password", password);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		} finally {
-			signClientIn(URL, params);
+
+	public static String convertInputStreamToString(InputStream inputStream) throws IOException {
+		BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
+		String line = "";
+		String result = "";
+		while ((line = bufferedReader.readLine()) != null) {
+			result += line;
 		}
-		
+		inputStream.close();
+		return result;
 	}
 
 	public static String signClientIn(String URL, JSONObject params) {
-		String toastText = "";
+		String result = "";
 		InputStream inputStream = null;
 		try {
 			// Create HttpClient
-			HttpClient client = new DefaultHttpClient();
+			HttpClient httpClient = new DefaultHttpClient();
 			
 			// Make a post request to the URL
 			HttpPost httpPost = new HttpPost(URL);
@@ -114,43 +122,59 @@ public class ClientSignIn extends Activity {
 			String jsonParams = params.toString();
 			
 			// Set jsonParams to StringEntity
-			StringEntity paramsEntity = new StringEntity(jsonParams);
+			StringEntity stringEntity = new StringEntity(jsonParams, HTTP.UTF_8);
 			
 			// Set httpPost Entity
-			httpPost.setEntity(paramsEntity);
+			httpPost.setEntity(stringEntity);
 			
-			// Set headers for server <- Look Into This!!!
-			//httpPost.setHeader(BLAH);
-			//httpPost.setHeader(BLAH);
+			// Set headers for server <- Look Into This!!! <- Can Skip because of
+			// skip_before_action :verify_authenticity_token in app/controllers/api_controllers.rb
+			httpPost.setHeader("X-CLIENT-EMAIL", "abc@def.com");
+			httpPost.setHeader("X-CLIENT-TOKEN", null);
+			httpPost.setHeader("Accept", "application/json");
+			httpPost.setHeader(HTTP.CONTENT_TYPE, "application/json");
 			// REFER TO ANDROID BOARD
 			
 			// Execute POST
-			HttpResponse httpResponse = client.execute(httpPost);
+			HttpResponse httpResponse = httpClient.execute(httpPost);
 			
 			// Set inputStream to response value
 			inputStream = httpResponse.getEntity().getContent();
 			
 			// Convert to string for toast
 			if (inputStream != null) {
-				toastText = inputStream.toString();
+				result = convertInputStreamToString(inputStream);
 				// MAKE TOAST!
 			} else {
-				toastText = "Not Successful";
+				result = "Not Successful";
 				// MAKE TOAST!
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return toastText;
+		return result;
+	}
+	
+	private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+
+		@Override
+		protected String doInBackground(String... params) {
+			// TODO Auto-generated method stub
+			JSONObject jsonParams = new JSONObject();
+			try {
+				jsonParams.put("email", params[1]);
+				jsonParams.put("password", params[2]);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return signClientIn(params[0], jsonParams);
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			// TODO Auto-generated method stub
+			// super.onPostExecute(result);
+			Toast.makeText(getBaseContext(), "DONE", Toast.LENGTH_LONG).show();
+		}
 	}
 }
-//ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-//NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-//if ( networkInfo != null && networkInfo.isConnected() ) {
-//	StringBuilder url = new StringBuilder(URL);
-//	
-//	HttpPost post = new HttpPost(url.toString());
-//} else {
-//	Toast toast = Toast.makeText(ClientSignIn.this, "No Internet Connection", Toast.LENGTH_LONG);
-//	toast.show();
-//}
