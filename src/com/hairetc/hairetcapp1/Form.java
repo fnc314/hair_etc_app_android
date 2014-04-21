@@ -366,7 +366,7 @@ public class Form extends Activity implements OnItemSelectedListener {
 		@Override
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
-			Toast.makeText(getBaseContext(), "DONE", Toast.LENGTH_LONG).show();
+			Toast.makeText(getBaseContext(), result, Toast.LENGTH_LONG).show();
 		}
 		
 		
