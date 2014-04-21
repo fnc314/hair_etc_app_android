@@ -21,6 +21,7 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -51,7 +52,7 @@ public class Form extends Activity implements OnItemSelectedListener {
 	private String chosenTime;
 	String[] stylist_id = {""};
 	String[] offering_ids = {"0","0","0","0","0","0","0","0","0","0"};
-	String[] apptDateTime = {chosenDate, chosenTime};
+	String[] apptDateTime = {"",""};
 	
 	// IP ADDRESS IS 10.0.2.2
 	final static String[] URL = {"http://10.0.2.2:3000/api/appointments.json"};
@@ -115,11 +116,13 @@ public class Form extends Activity implements OnItemSelectedListener {
 		String dateFormat = "MM-dd-yyyy";
 		SimpleDateFormat sdf = new SimpleDateFormat( dateFormat, Locale.US );
 		chosenDate = sdf.format( c.getTime() );
+		apptDateTime[0] = chosenDate;
 		apptDate.setText( sdf.format( c.getTime() ) );
 		
 		String timeFormat = "hh:mm a";
 		SimpleDateFormat stf = new SimpleDateFormat( timeFormat, Locale.US );
 		chosenTime = stf.format( c.getTime() );
+		apptDateTime[1] = chosenTime;
 		apptTime.setText( stf.format( c.getTime() ) );
 	}
 	
@@ -133,7 +136,7 @@ public class Form extends Activity implements OnItemSelectedListener {
 	
 	// Check for internet connection
 	public boolean isConnected() {
-		ConnectivityManager connMgr = (ConnectivityManager)getSystemService(Activity.CONNECTIVITY_SERVICE);
+		ConnectivityManager connMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 		if (networkInfo != null && networkInfo.isConnected()) {
 			return true;
@@ -352,8 +355,8 @@ public class Form extends Activity implements OnItemSelectedListener {
 			try {
 				jsonParams.put("stylist_id", params[1][0]);
 				jsonParams.put("offering_ids", Arrays.toString(params[2]));
-				jsonParams.put("date", params[3][0]);
-				jsonParams.put("time", params[3][1]);
+				jsonParams.put("apptDate", params[3][0]);
+				jsonParams.put("apptTime", params[3][1]);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
