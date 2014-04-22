@@ -1,6 +1,8 @@
 package com.hairetc.hairetcapp1;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -16,10 +18,12 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,8 +40,8 @@ public class ClientSignIn extends Activity {
 	EditText clientEmail;
 	EditText clientPassword;
 	
-	// IP ADDRESS IS 10.0.2.2
-	final static String URL = "http://10.0.2.2:3000/clients/sign_in.json";
+	// IP ADDRESS IS 10.0.2.2 (LocalHost)
+	final static String URL = "http://10.0.2.2:3000/api/sessions.json";
 	
 	
 	@Override
@@ -106,7 +110,21 @@ public class ClientSignIn extends Activity {
 			result += line;
 		}
 		inputStream.close();
+		result = extractToken(result);
 		return result;
+	}
+	
+	public static String extractToken(String result) {
+		String userToken = "";
+		try {
+			JSONObject jsonResponse = new JSONObject(result);
+			userToken += jsonResponse.getString("authentication_token");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return userToken;
+		
 	}
 
 	public static String signClientIn(String URL, JSONObject params) {
@@ -130,10 +148,10 @@ public class ClientSignIn extends Activity {
 			
 			// Set headers for server <- Look Into This!!! <- Can Skip because of
 			// skip_before_action :verify_authenticity_token in app/controllers/api_controllers.rb
-			httpPost.setHeader("X-CLIENT-EMAIL", "abc@def.com");
-			httpPost.setHeader("X-CLIENT-TOKEN", null);
 			httpPost.setHeader("Accept", "application/json");
 			httpPost.setHeader(HTTP.CONTENT_TYPE, "application/json");
+			httpPost.setHeader("X-CLIENT-EMAIL", "abc@def.com");
+			httpPost.setHeader("X-CLIENT-TOKEN", "");
 			// REFER TO ANDROID BOARD
 			
 			// Execute POST
@@ -175,7 +193,36 @@ public class ClientSignIn extends Activity {
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			// super.onPostExecute(result);
-			Toast.makeText(getBaseContext(), "DONE", Toast.LENGTH_LONG).show();
+			// Locally store the result passed in as the authentication_token
+			// Upon success of saving, (launch layout to) launch form
+			String APP_TOKEN = getText(R.string.localFile).toString();
+			String CLIENT_EMAIL = email;
+			try {
+				FileOutputStream fos = openFileOutput(APP_TOKEN, Context.MODE_PRIVATE);
+				fos.write(result.getBytes());
+				fos.write(">>".getBytes());
+				fos.write(CLIENT_EMAIL.getBytes());
+				fos.close();
+				Toast.makeText(getBaseContext(), "Key Saved", Toast.LENGTH_LONG).show();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+			} finally {
+				try {
+					Class form = Class.forName("com.hairetc.hairetcapp1.Form");
+					Intent formLaunch = new Intent(ClientSignIn.this, form);
+					startActivity(formLaunch);
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+					Log.i("TAG", e.getMessage().toString());
+				}
+			}
+			Toast.makeText(getBaseContext(), result, Toast.LENGTH_LONG).show();
 		}
 	}
 }

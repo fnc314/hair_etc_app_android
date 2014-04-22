@@ -28,6 +28,8 @@
     <string name="enterEmail">Enter Your Email Address</string>
     <string name="enterPassword">Password</string>
     <string name="signIn">Sign In!</string>
+    <string name="welcome">WELCOME TO HAIR ETC!</string>
+    <string name="localFile">client_email_token</string>
     
     <string-array name="stylists">
         <item>Theresa</item>

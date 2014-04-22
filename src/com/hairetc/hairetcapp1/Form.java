@@ -1,6 +1,7 @@
 package com.hairetc.hairetcapp1;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -57,13 +58,19 @@ public class Form extends Activity implements OnItemSelectedListener {
 	// IP ADDRESS IS 10.0.2.2
 	final static String[] URL = {"http://10.0.2.2:3000/api/appointments.json"};
 	
+	String[] clientAuth = {"",""};
+	static String fileName;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.form);
+		fileName = getText(R.string.localFile).toString();
 		findViews();
 		populateSpinnerWithStylists();
+		setEmailAndToken();
 		apptSubmit.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -314,7 +321,28 @@ public class Form extends Activity implements OnItemSelectedListener {
 		return result;
 	}
 	
-	public static String sendAppointment(String URL, JSONObject params) {
+	public void setEmailAndToken() {
+		StringBuffer datax = new StringBuffer("");
+		try {
+			FileInputStream fos = openFileInput(fileName);
+			InputStreamReader isr = new InputStreamReader(fos);
+			BufferedReader buffreader = new BufferedReader(isr);
+
+			String readString = buffreader.readLine();
+			while (readString != null) {
+				datax.append(readString);
+				readString = buffreader.readLine();
+			}
+			
+			isr.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+//		Toast.makeText(getBaseContext(), datax.toString(), Toast.LENGTH_LONG).show();
+		clientAuth = datax.toString().split(">>");
+	}
+	
+	public String sendAppointment(String URL, JSONObject params) {
 		String result = "";
 		InputStream inputStream = null;
 		try {
@@ -330,6 +358,8 @@ public class Form extends Activity implements OnItemSelectedListener {
 			
 			httpPost.setHeader("Accept", "application/json");
 			httpPost.setHeader(HTTP.CONTENT_TYPE, "application/json");
+			httpPost.setHeader("X-CLIENT-EMAIL", clientAuth[1]);
+			httpPost.setHeader("X-CLIENT-TOKEN", clientAuth[0]);
 			
 			HttpResponse httpResponse = httpClient.execute(httpPost);
 			
@@ -368,7 +398,6 @@ public class Form extends Activity implements OnItemSelectedListener {
 			// TODO Auto-generated method stub
 			Toast.makeText(getBaseContext(), result, Toast.LENGTH_LONG).show();
 		}
-		
 		
 		
 	}
