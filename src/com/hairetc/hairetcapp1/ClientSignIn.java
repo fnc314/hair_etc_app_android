@@ -214,12 +214,11 @@ public class ClientSignIn extends Activity {
 				Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_LONG).show();
 			} finally {
 				try {
-					Class form = Class.forName("com.hairetc.hairetcapp1.Form");
-					Intent formLaunch = new Intent(ClientSignIn.this, form);
+					Class secondActivity = Class.forName("com.hairetc.hairetcapp1.SecondActivity");
+					Intent formLaunch = new Intent(ClientSignIn.this, secondActivity);
 					startActivity(formLaunch);
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
-					Log.i("TAG", e.getMessage().toString());
 				}
 			}
 			Toast.makeText(getBaseContext(), result, Toast.LENGTH_LONG).show();

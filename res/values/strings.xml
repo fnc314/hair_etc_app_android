@@ -39,5 +39,7 @@
         <item>Krista</item>
         <item>Junae</item>
     </string-array>
+        <string name="newAppt">Schedule A New Appointment</string>
+        <string name="loggedIn">Welcome!</string>
 
 </resources>

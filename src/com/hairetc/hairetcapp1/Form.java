@@ -23,6 +23,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -397,6 +398,13 @@ public class Form extends Activity implements OnItemSelectedListener {
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			Toast.makeText(getBaseContext(), result, Toast.LENGTH_LONG).show();
+			try {
+				Class secondActivity = Class.forName("com.hairetc.hairetcapp1.SecondActivity");
+				Intent formLaunch = new Intent(Form.this, secondActivity);
+				startActivity(formLaunch);
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		
