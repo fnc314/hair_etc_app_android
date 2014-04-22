@@ -16,6 +16,7 @@ public class SecondActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_second);
+		createNewAppt = (Button)findViewById(R.id.createNewAppt);
 		createNewAppt.setOnClickListener(new View.OnClickListener() {
 
 			@Override

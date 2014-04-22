@@ -34,7 +34,6 @@ public class MainActivity extends Activity {
 					startActivity(formLaunch);
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
-					Log.i("TAG", e.getMessage().toString());
 				}
 			}
 		});
