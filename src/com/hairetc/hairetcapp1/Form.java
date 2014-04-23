@@ -79,7 +79,7 @@ public class Form extends Activity implements OnItemSelectedListener {
 				if ( isConnected() ) {
 					new HttpAsyncTask().execute(URL, stylist_id, offering_ids, apptDateTime);
 				} else {
-					
+					Toast.makeText(Form.this, "NO INTERNET CONNECTION", Toast.LENGTH_LONG).show();
 				}
 				
 			}

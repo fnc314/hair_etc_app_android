@@ -150,8 +150,8 @@ public class ClientSignIn extends Activity {
 			// skip_before_action :verify_authenticity_token in app/controllers/api_controllers.rb
 			httpPost.setHeader("Accept", "application/json");
 			httpPost.setHeader(HTTP.CONTENT_TYPE, "application/json");
-			httpPost.setHeader("X-CLIENT-EMAIL", "abc@def.com");
-			httpPost.setHeader("X-CLIENT-TOKEN", "");
+			//httpPost.setHeader("X-CLIENT-EMAIL", "abc@def.com");
+			//httpPost.setHeader("X-CLIENT-TOKEN", "");
 			// REFER TO ANDROID BOARD
 			
 			// Execute POST
