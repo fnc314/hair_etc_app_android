@@ -1,8 +1,12 @@
 # Hair Etc App for Android
 
-## App Description
+## Background
 
-This app is a growing port of the [HairEtcApp](https:://hairetcapp.herokuapp.com/) written natively for the Android OS.  As of **Monday March 31, 2014** the app is a `WebView` that requires Android 4.4 KitKat to render the proper mobile stylings.  If a lower version of Android is running the application then the standard `WebView` will not be able to support the extra stylings.  However, basic functionality will not be affected.
+Originally this app was generated with a `WebView` and special styling sheets for the mobile view.  This method is inefficient because `WebView`s are rendered using Chromium on Android 4.4+ and a WebKit based rendering engine on any earlier version of Android.  Therefore, using `WebView` would lead to an inconsistent experience for mobile device users.  To improve the performance and standardize the user experience, the app was re-written as a native Android application.
+
+## Description
+
+This app is a growing port of the [HairEtcApp](https://hairetcapp.herokuapp.com/) written natively for the Android OS.  As of **Monday March 31, 2014** the app is a `WebView` that requires Android 4.4 KitKat to render the proper mobile stylings.  If a lower version of Android is running the application then the standard `WebView` will not be able to support the extra stylings.  However, basic functionality will not be affected.
 
 The app allows direct access to the HairEtcApp, giving users the ability to sign in or sign up for the service, create/edit appointments, and view appointment history.  Due to clever server-side view management, the mobile app is optimized for speed by only loading the small HTML files necessary for functionality and display.
 
