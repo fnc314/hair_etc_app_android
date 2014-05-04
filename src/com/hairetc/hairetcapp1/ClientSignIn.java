@@ -194,7 +194,7 @@ public class ClientSignIn extends Activity {
 			// TODO Auto-generated method stub
 			// super.onPostExecute(result);
 			// Locally store the result passed in as the authentication_token
-			// Upon success of saving, (launch layout to) launch form
+			// Upon success of saving, launch form
 			String APP_TOKEN = getText(R.string.localFile).toString();
 			String CLIENT_EMAIL = email;
 			try {

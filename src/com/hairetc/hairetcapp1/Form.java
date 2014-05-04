@@ -142,7 +142,7 @@ public class Form extends Activity implements OnItemSelectedListener {
 		apptSubmit = (Button)findViewById(R.id.apptSubmit);	
 	}
 	
-	// Check for internet connection
+	// Check for Internet connection
 	public boolean isConnected() {
 		ConnectivityManager connMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
