@@ -12,7 +12,7 @@ There is a simple user flow for this project.  Upon loading the app the user is 
 
 ### The Nitty Gritty Details
 
-Because this application has to make calls to the Rails server, there are many instances of `AsyncTask` sub-classes through-out most of the activities.  This includes user sign-in and and appointment creation.  Due to the unique nature of Android-to-server communications, in order to get the most out of my Rails server, it was best to namespace all of the routes that Android needs
+Because this application has to make calls to the Rails server, there are many instances of `AsyncTask` sub-classes through-out most of the activities.  This includes user sign-in and and appointment creation.  Due to the unique nature of Android-to-server communications, it was best to namespace all of the routes that Android needs and make them respond exclusively with/to JSON objects.  This approach allowed the Rails server to have separate concerns and be able to handle both HTML communications from browsers and JSON requests from Android simultaneous.
 
 ## Description
 
