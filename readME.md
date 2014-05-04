@@ -57,6 +57,9 @@ and sent in the HTTP request header to the server with each request.
 ```
 Without this token, contact with the server is not possible and results in an error `Toast` being shown on the Android application.
 
+### Future Expansions
+
+In later versions of this app, users will be able to apply all CRUD operations on their appointments (as they can on the Web application).  Users will be able to sign up for an account through the app as well.  There will then be a complete stylistic overhaul after all functionality is built in.  Currently, the design is `Holo Dark` and is from standard Android.  
 <!-- ## Description
 
 This app is a growing port of the [HairEtcApp](https://hairetcapp.herokuapp.com/) written natively for the Android OS.  As of **Monday March 31, 2014** the app is a `WebView` that requires Android 4.4 KitKat to render the proper mobile stylings.  If a lower version of Android is running the application then the standard `WebView` will not be able to support the extra stylings.  However, basic functionality will not be affected.
