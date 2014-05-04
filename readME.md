@@ -1,8 +1,18 @@
 # Hair Etc App for Android
 
-## Background
+### Background
 
-Originally this app was generated with a `WebView` and special styling sheets for the mobile view.  This method is inefficient because `WebView`s are rendered using Chromium on Android 4.4+ and a WebKit based rendering engine on any earlier version of Android.  Therefore, using `WebView` would lead to an inconsistent experience for mobile device users.  To improve the performance and standardize the user experience, the app was re-written as a native Android application.
+Originally this app was generated with a `WebView` and special styling sheets for the mobile view.  This method is inefficient because `WebView`s are rendered using Chromium on Android 4.4+ and a WebKit based rendering engine on any earlier version of Android.  Therefore, using `WebView` would lead to an inconsistent experience for mobile device users.  To improve the performance and standardize the user experience, the app was re-written as a native Android application using the same Rails server and PostgreSQL database.
+
+The webapp for this Android application can be viewed [here](https://hairetcapp.herokuapp.com/).
+
+### A User's Experience
+
+There is a simple user flow for this project.  Upon loading the app the user is greeted with a splash screen (currently set to a scenic photo of the Milky Way Galaxy) and then directed to the log-in page.  The user inputs their credentials and, assuming everything checks out on the server, is directed to a single button.  This button launches the form that allows users to create a new appointment.  Upon completion of creating the appointment, users submit the information to the Rails server.  Once the data has been written to the database, and the required text messages sent out, users are redirected to the single button for creating new appointments.
+
+### The Nitty Gritty Details
+
+Because this application has to make calls to the Rails server, there are many instances of `AsyncTask` sub-classes through-out most of the activities.  This includes user sign-in and and appointment creation.  Due to the unique nature of Android-to-server communications, in order to get the most out of my Rails server, it was best to namespace all of the routes that Android needs
 
 ## Description
 
