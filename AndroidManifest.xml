@@ -7,25 +7,25 @@
     <uses-sdk
         android:minSdkVersion="17"
         android:targetSdkVersion="19" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Holo" >
-        
         <activity
             android:name="com.hairetc.hairetcapp1.Splash"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.SPLASH" />
-				<action android:name="android.intent.action.MAIN" />
-                
+                <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
             android:name="com.hairetc.hairetcapp1.MainActivity"
             android:label="@string/app_name" >
@@ -35,7 +35,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        
         <activity
             android:name="com.hairetc.hairetcapp1.Form"
             android:label="@string/app_name" >
@@ -45,7 +44,19 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        
+        <activity
+            android:name="com.hairetc.hairetcapp1.ClientSignIn"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.hairetc.hairetcapp1.SIGNIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.hairetc.hairetcapp1.SecondActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

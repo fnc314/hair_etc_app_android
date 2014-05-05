@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xml>
 <resources>
 
     <string name="app_name">HairEtcApp</string>
@@ -24,6 +25,11 @@
     <string name="hairExtensions">Extensions</string>
     <string name="wax">Wax</string>
     <string name="spPromptStylist">Choose Your Stylist</string>
+    <string name="enterEmail">Enter Your Email Address</string>
+    <string name="enterPassword">Password</string>
+    <string name="signIn">Sign In!</string>
+    <string name="welcome">WELCOME TO HAIR ETC!</string>
+    <string name="localFile">client_email_token</string>
     
     <string-array name="stylists">
         <item>Theresa</item>
@@ -33,5 +39,7 @@
         <item>Krista</item>
         <item>Junae</item>
     </string-array>
+        <string name="newAppt">Schedule A New Appointment</string>
+        <string name="loggedIn">Welcome!</string>
 
 </resources>

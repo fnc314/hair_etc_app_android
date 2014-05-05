@@ -1,21 +1,16 @@
 package com.hairetc.hairetcapp1;
 
-// import android.support.v7.app.ActionBarActivity;
-// import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-// import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-// import android.webkit.WebView;
-// import android.webkit.WebViewClient;
-import android.os.Build;
 
 public class MainActivity extends Activity {
 	
@@ -34,8 +29,8 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				try {
-					Class form = Class.forName("com.hairetc.hairetcapp1.Form");
-					Intent formLaunch = new Intent(MainActivity.this, form);
+					Class clientSignIn = Class.forName("com.hairetc.hairetcapp1.ClientSignIn");
+					Intent formLaunch = new Intent(MainActivity.this, clientSignIn);
 					startActivity(formLaunch);
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
@@ -84,21 +79,21 @@ public class MainActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	/**
-	 * A placeholder fragment containing a simple view.
-	 */
-	public static class PlaceholderFragment extends Fragment {
-
-		public PlaceholderFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main, container,
-					false);
-			return rootView;
-		}
-	}
+//	/**
+//	 * A placeholder fragment containing a simple view.
+//	 */
+//	public static class PlaceholderFragment extends Fragment {
+//
+//		public PlaceholderFragment() {
+//		}
+//
+//		@Override
+//		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//				Bundle savedInstanceState) {
+//			View rootView = inflater.inflate(R.layout.fragment_main, container,
+//					false);
+//			return rootView;
+//		}
+//	}
 
 }
