@@ -57,7 +57,7 @@ public class Form extends Activity implements OnItemSelectedListener {
 	String[] apptDateTime = {"",""};
 	
 	// IP ADDRESS IS 10.0.2.2
-	final static String[] URL = {"http://10.0.2.2:3000/api/appointments.json"};
+	final static String[] URL = {"https://hairetcapp.herokuapp.com/api/appointments.json"};
 	
 	String[] clientAuth = {"",""};
 	static String fileName;

@@ -41,7 +41,7 @@ public class ClientSignIn extends Activity {
 	EditText clientPassword;
 	
 	// IP ADDRESS IS 10.0.2.2 (LocalHost)
-	final static String URL = "http://10.0.2.2:3000/api/sessions.json";
+	final static String URL = "https://hairetcapp.herokuapp.com/api/sessions.json";
 	
 	
 	@Override
