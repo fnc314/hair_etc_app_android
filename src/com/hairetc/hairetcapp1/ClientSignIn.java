@@ -221,7 +221,7 @@ public class ClientSignIn extends Activity {
 					e.printStackTrace();
 				}
 			}
-			Toast.makeText(getBaseContext(), result, Toast.LENGTH_LONG).show();
+			// Toast.makeText(getBaseContext(), result, Toast.LENGTH_LONG).show();
 		}
 	}
 }
