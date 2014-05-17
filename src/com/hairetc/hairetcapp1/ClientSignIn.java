@@ -152,7 +152,6 @@ public class ClientSignIn extends Activity {
 			httpPost.setHeader(HTTP.CONTENT_TYPE, "application/json");
 			//httpPost.setHeader("X-CLIENT-EMAIL", "abc@def.com");
 			//httpPost.setHeader("X-CLIENT-TOKEN", "");
-			// REFER TO ANDROID BOARD
 			
 			// Execute POST
 			HttpResponse httpResponse = httpClient.execute(httpPost);
