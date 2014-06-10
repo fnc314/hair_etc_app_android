@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -8,6 +9,8 @@
         android:id="@+id/tvLoggedIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:text="@string/loggedIn"
         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -16,6 +19,17 @@
         android:id="@+id/createNewAppt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvLoggedIn"
         android:text="@string/newAppt" />
 
-</LinearLayout>
+    <ListView
+        android:id="@+id/clientApptList"
+        android:layout_width="match_parent"
+        android:layout_height="387dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true" >
+    </ListView>
+
+</RelativeLayout>
